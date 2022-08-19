@@ -1,0 +1,30 @@
+---
+meta:
+  lang: en
+  title: Posts
+layout: base
+eleventyNavigation:
+  key: Blog
+---
+
+{% block content %}
+<main id="main-content" tabindex="-1">
+  <h1>My Blog Posts</h1>
+  <ul>
+    {%- for item in collections.posts | reverse -%}
+    <li>
+      <a href="{{ item.url | url }}">{{ item.data.title }}</a> | {{ item.data.date | dateReadable }}
+    </li>
+    {%- endfor -%}
+  </ul>
+
+  <h1>Categories</h1>
+  <ul>
+    {%- for tag in collections.tagsList | reverse -%} {%- if tag !== 'posts' -%}
+    <li>
+      <a href="/tags/{{ tag }}">{{ tag }}</a>
+    </li>
+    {%- endif -%} {%- endfor -%}
+  </ul>
+</main>
+{% endblock %}

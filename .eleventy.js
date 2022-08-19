@@ -1,25 +1,38 @@
 const pluginRss = require("@11ty/eleventy-plugin-rss"); // needed for absoluteUrl feature
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const moment = require("moment");
+moment.locale("en");
 // Base setup for builds, needed for og tags and correct image paths
 // (mostly for github pages deployment, see build-deploy.yaml)
-const baseUrl = process.env.BASE_URL || 'http://localhost:8080';
-// e.g. 'https://mandrasch.github.io/'
-const pathPrefix = process.env.PATH_PREFIX || '/';
+const baseUrl = process.env.BASE_URL || "http://localhost:8080";
+const pathPrefix = process.env.PATH_PREFIX || "/";
 // e.g. '/11ty-plain-boostrap5/'
-console.log('baseUrl is set to ...', baseUrl);
-console.log('pathPrefix is set to ...', pathPrefix);
+console.log("baseUrl is set to ...", baseUrl);
+console.log("pathPrefix is set to ...", pathPrefix);
 
 // will be accessible in all templates via
 // see "eleventyConfig.addGlobalData("site", globalData);"" below
 // related: https://github.com/11ty/eleventy/issues/1641
 const globalSiteData = {
-  title: "11ty-plain-bootstrap5",
-  description: "Template for static site generator Eleventy with Boostrap 5 and SCSS/JS compilation via laravel-mix.",
-  locale: 'en',
+  title: "SJHUSKEY.INFO",
+  description: "Samuel J. Huskey's Personal Website",
+  locale: "en",
   baseUrl: baseUrl,
   pathPrefix: pathPrefix,
-}
+};
+// Add CSS to Markdown text.
+// From https://giuliachiola.dev/posts/add-html-classes-to-11ty-markdown-content/
+const markdownIt = require("markdown-it");
+const markdownItAttrs = require("markdown-it-attrs");
+
+const markdownItOptions = {
+  html: true,
+  breaks: true,
+  linkify: true,
+};
+
+const markdownLib = markdownIt(markdownItOptions).use(markdownItAttrs);
 
 // https://www.11ty.dev/docs/plugins/image/#use-this-in-your-templates
 const Image = require("@11ty/eleventy-img");
@@ -33,20 +46,23 @@ async function imageShortcode(src, alt, sizes = "100vw") {
   // TODO: pathPrefix must be '/path/', check existence of trailing slash?!
   let metadata = await Image(src, {
     widths: [600, 1200],
-    formats: ['webp', 'jpeg'],
+    formats: ["webp", "jpeg"],
     urlPath: `${pathPrefix}img`,
     // outputDir: "./img/" is default
-    outputDir: './_site/img/' // passthrough below didn't work, write to output dir by now
-
+    outputDir: "./_site/img/", // passthrough below didn't work, write to output dir by now
   });
 
   let lowsrc = metadata.jpeg[0];
   let highsrc = metadata.jpeg[metadata.jpeg.length - 1];
 
   return `<picture>
-    ${Object.values(metadata).map(imageFormat => {
-    return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat.map(entry => entry.srcset).join(", ")}" sizes="${sizes}">`;
-  }).join("\n")}
+    ${Object.values(metadata)
+      .map((imageFormat) => {
+        return `  <source type="${imageFormat[0].sourceType}" srcset="${imageFormat
+          .map((entry) => entry.srcset)
+          .join(", ")}" sizes="${sizes}">`;
+      })
+      .join("\n")}
       <img
         src="${lowsrc.url}"
         width="${highsrc.width}"
@@ -58,6 +74,23 @@ async function imageShortcode(src, alt, sizes = "100vw") {
 }
 
 module.exports = function (eleventyConfig) {
+  // Set excerpting
+  eleventyConfig.setFrontMatterParsingOptions({
+    excerpt: true,
+    excerpt_separator: "<!-- excerpt -->",
+  });
+
+  // Set Markdown library
+  eleventyConfig.setLibrary("md", markdownLib);
+  // Dates
+
+  eleventyConfig.addFilter("dateIso", (date) => {
+    return moment(date).toISOString();
+  });
+
+  eleventyConfig.addFilter("dateReadable", (date) => {
+    return moment(date).utc().format("LL"); // E.g. May 31, 2019
+  });
 
   // Set site title
   eleventyConfig.addGlobalData("site", globalSiteData);
@@ -65,6 +98,7 @@ module.exports = function (eleventyConfig) {
   // Add plugins
   eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  eleventyConfig.addPlugin(syntaxHighlight);
 
   // Copy dist/ files from laravel mix
   eleventyConfig.addPassthroughCopy("dist/"); // path is relative from root
@@ -76,6 +110,9 @@ module.exports = function (eleventyConfig) {
   // TODO: this is executed too soon? imgs not there?
   eleventyConfig.addPassthroughCopy("img/");
 
+  // Copy downloadable files.
+  eleventyConfig.addPassthroughCopy("src/files");
+
   // Important for watch: Eleventy will not add a watch for files or folders that
   // are in .gitignore (--> dist/),unless setUseGitIgnore is turned off. See this chapter:
   // https://www.11ty.dev/docs/watch-serve/#add-your-own-watch-targets
@@ -83,7 +120,7 @@ module.exports = function (eleventyConfig) {
 
   // Watch for changes (and reload browser)
   eleventyConfig.addWatchTarget("./src/assets"); // normal (static) assets
-  eleventyConfig.addWatchTarget("./dist") // laravel-mix output changes
+  eleventyConfig.addWatchTarget("./dist"); // laravel-mix output changes
 
   // RandomId function for IDs used by labelled-by
   // Thanks https://github.com/mozilla/nunjucks/issues/724#issuecomment-207581540
@@ -94,7 +131,16 @@ module.exports = function (eleventyConfig) {
 
   // eleventy-img config
   eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
-
+  // Create a list of tags.
+  // From https://stackoverflow.com/a/66186773/2943704
+  eleventyConfig.addCollection("tagsList", (collectionApi) => {
+    const tagsSet = new Set();
+    collectionApi.getAll().forEach((item) => {
+      if (!item.data.tags) return;
+      item.data.tags.filter((tag) => !["foo", "bar"].includes(tag)).forEach((tag) => tagsSet.add(tag));
+    });
+    return [...tagsSet].sort((a, b) => b.localeCompare(a));
+  });
   // Base Config
   return {
     dir: {
@@ -108,6 +154,6 @@ module.exports = function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
     // important for github pages build (subdirectory):
-    pathPrefix: pathPrefix
+    pathPrefix: pathPrefix,
   };
 };
