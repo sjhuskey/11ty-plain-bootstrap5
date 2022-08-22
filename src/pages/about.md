@@ -10,7 +10,7 @@ eleventyNavigation:
 
 ![Sam Huskey](/assets/images/sjhuskey-2017.jpg){.float-image}
 
-As an introvert, I generally prefer not to talk about myself. Since this site is called "sjhuskey.info", however, I really ought to provide some information about myself.
+As an introvert, I generally prefer not to talk about myself, but since this is my personal web site, I really ought to provide some information about myself.
 
 <!-- excerpt -->
 

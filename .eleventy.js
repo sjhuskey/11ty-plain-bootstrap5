@@ -15,11 +15,13 @@ console.log("pathPrefix is set to ...", pathPrefix);
 // see "eleventyConfig.addGlobalData("site", globalData);"" below
 // related: https://github.com/11ty/eleventy/issues/1641
 const globalSiteData = {
-  title: "SJHUSKEY.INFO",
+  title: "Samuel J. Huskey",
   description: "Samuel J. Huskey's Personal Website",
   locale: "en",
   baseUrl: baseUrl,
   pathPrefix: pathPrefix,
+  lang: "en",
+  home: "https://sjhuskey.github.io/",
 };
 // Add CSS to Markdown text.
 // From https://giuliachiola.dev/posts/add-html-classes-to-11ty-markdown-content/
