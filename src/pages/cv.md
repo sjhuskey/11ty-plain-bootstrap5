@@ -7,6 +7,7 @@ layout: page
 eleventyNavigation:
   key: CV
 ---
+[_Download a print version of this document._](https://sjhuskey.github.io/files/cv-web.pdf)
 
 Samuel J. Huskey  
 The University of Oklahoma  
