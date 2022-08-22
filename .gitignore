@@ -147,6 +147,7 @@ Temporary Items
 
 # OxygenXML project files
 *.xpr
+<<<<<<< HEAD
 node_modules
 node_modules
 node_modules
@@ -154,3 +155,5 @@ node_modules
 node_modules
 node_modules
 node_modules
+=======
+>>>>>>> 4968fc730862494fd2f66a90cd1d2e14069a721c
