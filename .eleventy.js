@@ -76,6 +76,11 @@ async function imageShortcode(src, alt, sizes = "100vw") {
 }
 
 module.exports = function (eleventyConfig) {
+  // Set posts as a collection
+  eleventyConfig.addCollection("posts", function (collection) {
+    return collection.getFilteredByGlob("posts/**/*.md");
+  });
+
   // Set excerpting
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: true,

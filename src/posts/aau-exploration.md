@@ -1,12 +1,11 @@
 ---
 title: "NEH funding histories for AAU Institutions"
 author: "Samuel J. Huskey"
-date: 2022-09-26
+date: "2022-09-26"
+layout: base
 tags:
   - Python
-  - NEH
-  - AAU
-layout: base
+image: "/assets/images/python.jpg"
 ---
 
 ## Introduction
