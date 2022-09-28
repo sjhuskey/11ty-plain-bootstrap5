@@ -1,6 +1,7 @@
 ---
 title: "My Journey with Web Technology"
 author: "Samuel J. Huskey"
+date: "2022-04-01"
 tags:
   - Technology
   - posts

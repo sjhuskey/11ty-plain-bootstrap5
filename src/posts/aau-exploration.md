@@ -5,7 +5,6 @@ date: "2022-09-26"
 layout: base
 tags:
   - Python
-image: "/assets/images/python.jpg"
 ---
 
 ## Introduction

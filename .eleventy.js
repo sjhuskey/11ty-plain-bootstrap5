@@ -76,11 +76,6 @@ async function imageShortcode(src, alt, sizes = "100vw") {
 }
 
 module.exports = function (eleventyConfig) {
-  // Set posts as a collection
-  eleventyConfig.addCollection("posts", function (collection) {
-    return collection.getFilteredByGlob("posts/**/*.md");
-  });
-
   // Set excerpting
   eleventyConfig.setFrontMatterParsingOptions({
     excerpt: true,
@@ -147,6 +142,10 @@ module.exports = function (eleventyConfig) {
       item.data.tags.filter((tag) => !["foo", "bar"].includes(tag)).forEach((tag) => tagsSet.add(tag));
     });
     return [...tagsSet].sort((a, b) => b.localeCompare(a));
+  });
+  // Set posts as a collection
+  eleventyConfig.addCollection("posts", function (collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/posts/*.md");
   });
   // Base Config
   return {
