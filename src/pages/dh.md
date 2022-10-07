@@ -4,6 +4,7 @@ author: "Samuel J. Huskey"
 date: 2022-01-18
 permalink: "/about/dh.html"
 layout: page
+image: "/assets/images/tech.jpg"
 eleventyNavigation:
   key: DH
 ---
@@ -17,3 +18,6 @@ My main scholarly interest is in text encoding and visualization, but I also hav
 I would love to find opportunities to collaborate on DH projects, particularly with faculty members, students, independent scholars, and community partners who would like to explore DH but don't have technical skills or a background in technology.
 
 My dream project would combine DH methodologies and technologies to raise awareness of, or even to solve, real-world issues and problems.
+
+ <hr />
+ <span style="font-size:smaller">Photo by <a href="https://unsplash.com/@fantasyflip?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Philipp Katzenberger</a> on <a href="https://unsplash.com/s/photos/technology?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>

@@ -37,3 +37,6 @@ I also ran into this error:
 I've seen that before, too. My github oauth token is fine, but Composer has a bug that makes it think otherwise. Fortunately, [rafaelbitten](https://stackoverflow.com/a/67005141/2943704) has a solution. His first step, however, is a doozy: "Find the `composer/auth.json` file." For me, that's in `~/.config/composer`, not in `~/.composer`, as it might be for some. After I found my `auth.json` file, I copied the oauth part (actually, it was the only thing in the file), pasted it somewhere for the moment, and replaced it with `{}` so that Composer wouldn't throw another error: `Expected one of: 'STRING', 'NUMBER', 'NULL', 'TRUE', 'FALSE', '{', '['`. Of course, after I did that, I ran into the `Filesystem exception` error from above when I did `composer selfupdate`, so I repeated the Boss COTIGA's process.
 
 After that, `composer selfupdate` showed that I was using the most current stable version.
+
+<hr />
+<span style="font-size:smaller">Photo by <a href="https://unsplash.com/@marius?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Marius Masalar</a> on <a href="https://unsplash.com/s/photos/music?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>

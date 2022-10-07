@@ -122,3 +122,6 @@ The migrations related to the [Google Analytics](https://www.drupal.org/project/
 ## YouTube
 
 The D7 version of the site has a content type with a field type of "Youtube," which was supplied by the [YouTube Field module](https://www.drupal.org/project/youtube). I wasn't planning to use the YouTube Field module on the D9 version of the site, since D9 has a native Media field type that includes an option for embedding remote video files. But, since the module is supported for D8 and D9, I installed and enabled it. After that, the migration occurred without issue.
+
+<hr />
+<span style="font-size:smaller">Photo by <a href="https://unsplash.com/es/@rubaitulazad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rubaitul Azad</a> on <a href="https://unsplash.com/s/photos/drupal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>

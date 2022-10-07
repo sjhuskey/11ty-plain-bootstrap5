@@ -7,13 +7,14 @@ layout: page
 eleventyNavigation:
   key: CV
 ---
+
 [_Download a print version of this document._](https://sjhuskey.github.io/files/cv-web.pdf)
 
 Samuel J. Huskey  
 The University of Oklahoma  
 Department of Classics and Letters  
 Email: [huskey](mailto:huskey@ou.edu)[@ou.edu](mailto:huskey@ou.edu)  
-Website: [https://sjhuskey.github.io/](https://sjhuskey.github.io/)  
+Website: [https://sjhuskey.info/](https://sjhuskey.info/)  
 ORCID: <https://orcid.org/0000-0002-8192-9385>
 
 ### Education

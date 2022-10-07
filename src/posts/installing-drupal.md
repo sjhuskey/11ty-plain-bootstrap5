@@ -164,3 +164,5 @@ Here are the modules that I install on most of my sites:
 - token_filter: filter your tokens by context
 - views_bulk_operations: allows you to edite multiple nodes all at once, among other things
 - views_data_export: export your data in CSV, JSON, and other formats
+<hr />
+<span style="font-size:smaller">Photo by <a href="https://unsplash.com/es/@rubaitulazad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rubaitul Azad</a> on <a href="https://unsplash.com/s/photos/drupal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>

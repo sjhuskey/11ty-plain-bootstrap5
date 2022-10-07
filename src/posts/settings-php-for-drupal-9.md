@@ -82,3 +82,6 @@ $databases['migrate']['default'] = array (
 ```
 
 Of course, DBNAME, DBUSER, AND DBPASSWORD have to be replaced with real values.
+
+<hr />
+<span style="font-size:smaller">Photo by <a href="https://unsplash.com/es/@rubaitulazad?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Rubaitul Azad</a> on <a href="https://unsplash.com/s/photos/drupal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></span>

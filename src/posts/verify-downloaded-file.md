@@ -39,3 +39,6 @@ solr-8.11.1.tgz: OK
 ```
 
 If you don't get that message, _don't open the archive file_. Something is wrong.
+
+<hr />
+<span style="font-size:smaller">Photo by <a href="https://unsplash.com/@mudmanuk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Paul Carroll</a> on <a href="https://unsplash.com/s/photos/penguin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash.</a> Penguins, get it?</span>
